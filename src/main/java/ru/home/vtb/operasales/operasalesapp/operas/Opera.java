@@ -5,13 +5,13 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Opera {
-    public String operaName;
-    public String operaDate;
-    public String category;
-    public String description;
+    private String operaName;
+    private String operaDate;
+    private String category;
+    private String description;
     // условная схема зала 10X10. понятно, что карта зала в "жизни" сложнее
     // порядок хранения не важен - важен ключ
-    Map<String, Integer> tikets = new HashMap<>(); // key = rowXcol
+    private Map<String, Integer> tikets = new HashMap<>(); // key = rowXcol
 
     public Opera(String name, String sDate, String category, String description) {
         this.operaName = name;

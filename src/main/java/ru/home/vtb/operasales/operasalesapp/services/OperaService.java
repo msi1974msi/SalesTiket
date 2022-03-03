@@ -9,8 +9,8 @@ import java.util.Map;
 
 @Service
 public class OperaService {
-    Map<String, Opera> mapOpera = new HashMap<>(); // key = name + " " + sDate
-    Opera nOpera;
+    private Map<String, Opera> mapOpera = new HashMap<>(); // key = name + " " + sDate
+    private Opera nOpera;
 
     public Opera getOpera(String name, String sDate){
         //System.out.println("Создаём новый релиз: "+ name + " " + sDate);
