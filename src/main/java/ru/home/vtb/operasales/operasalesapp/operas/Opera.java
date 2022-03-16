@@ -1,5 +1,6 @@
 package ru.home.vtb.operasales.operasalesapp.operas;
 
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -48,22 +49,28 @@ public class Opera {
         return counter;
     }
 
-    public synchronized void saleTiket(int row, int place) {
+    public synchronized int saleTiket(int row, int place) {
         String key = row + "X" + place;
         int value;
+        int result = 0;
 
         if (tikets.containsKey(key) ) {
             value = tikets.get(key);
             if (value == 0) {
                 //System.out.println("Билет доступен для покупки");
                 tikets.replace(key,1);
+                result = 1;
             } else {
-                System.out.println("Билет уже недоступен для покупки!");
+                //System.out.println("Билет уже недоступен для покупки!");
+                result = 2;
             }
 
         } else {
-            System.out.println("Запрошенного билета не существует!");
+            result = 3 ;
+            //System.out.println("Запрошенного билета не существует!");
         }
+
+        return result;
     }
 
     public synchronized void dropTiket(int row, int place) {
@@ -81,6 +88,10 @@ public class Opera {
         } else {
             System.out.println("Этот билет точно не из той Оперы!");
         }
+    }
+
+    public String getOperaName(){
+        return this.operaName;
     }
 
     public String getCategory(){
@@ -106,10 +117,6 @@ public class Opera {
             sOpera.append(String.format("| %2d  ", i+1));
             for (int j = 0; j < 10; j++){
               int value = tikets.get((i+1) + "X" + (j+1));
-//              if (value == 0){
-//                    count++;
-//               }
-              //System.out.println(value);
               sOpera.append(String.format("| %2d", j+1)+"("+ (value == 1 ? "X": "O") + ")");
             }
             sOpera.append("\n");
